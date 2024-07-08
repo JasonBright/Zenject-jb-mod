@@ -10,6 +10,7 @@ namespace Zenject
     // - Run Initialize() on all Iinitializable's, in the order specified by InitPriority
     public class InitializableManager
     {
+        public event Action<int> ItemInitialized;
         List<InitializableInfo> _initializables;
 
         protected bool _hasInitialized;
@@ -74,6 +75,7 @@ namespace Zenject
 #endif
                     {
                         initializable.Initializable.Initialize();
+                        ItemInitialized?.Invoke( initializable.Priority );
                     }
                 }
                 catch (Exception e)
