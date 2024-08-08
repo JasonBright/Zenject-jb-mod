@@ -161,6 +161,7 @@
     <Compile Include="Providers\SubContainerCreators\SubContainerCreatorByInstanceGetter.cs" />
     <Compile Include="Providers\SubContainerCreators\SubContainerCreatorUtil.cs" />
     <Compile Include="Runtime\GuiRenderableManager.cs" />
+    <Compile Include="Runtime\IAsyncInitializable.cs" />
     <Compile Include="Runtime\Kernels\Kernel.cs" />
     <Compile Include="Runtime\PoolableManager.cs" />
     <Compile Include="Util\ActionInstaller.cs" />
