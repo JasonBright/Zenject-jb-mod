@@ -3413,6 +3413,12 @@ namespace Zenject
             BindExecutionOrder(typeof(T), order);
         }
 
+        public void BindInitializationAfter(Type type, Type afterType)
+        {
+            BindInstance(
+                ValuePair.New(type, afterType)).WhenInjectedInto<InitializableManager>();
+        }
+
         public void BindExecutionOrder(Type type, int order)
         {
             Assert.That(type.DerivesFrom<ITickable>() || type.DerivesFrom<IInitializable>() || type.DerivesFrom<IDisposable>() || type.DerivesFrom<ILateDisposable>() || type.DerivesFrom<IFixedTickable>() || type.DerivesFrom<ILateTickable>() || type.DerivesFrom<IPoolable>(),

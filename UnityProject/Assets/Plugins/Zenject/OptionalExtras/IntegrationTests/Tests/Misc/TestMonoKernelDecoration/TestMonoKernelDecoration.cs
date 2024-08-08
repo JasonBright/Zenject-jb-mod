@@ -37,9 +37,9 @@ namespace Zenject.Tests.Misc.TestMonoKernelDecoration
         private class InitializableManagerSpy : InitializableManager
         {
             
-            public InitializableManagerSpy(List<IInitializable> initializables, List<ValuePair<Type, int>> priorities) : base(initializables, priorities){}
+            public InitializableManagerSpy(List<IInitializable> initializables, List<ValuePair<Type, int>> priorities) : base(initializables, null, priorities, null){}
 
-            public bool IsInitialized => _hasInitialized;
+            public bool IsInitialized => HasInitialized;
         }
         
         
