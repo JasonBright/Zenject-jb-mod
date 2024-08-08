@@ -58,6 +58,8 @@ namespace Zenject
 
         public virtual void Update()
         {
+            if (_initializableManager.HasInitialized == false)
+                return;
             // Don't spam the log every frame if initialization fails and leaves it as null
             if (_tickableManager != null)
             {
@@ -74,6 +76,8 @@ namespace Zenject
 
         public virtual void FixedUpdate()
         {
+            if (_initializableManager.HasInitialized == false)
+                return;
             // Don't spam the log every frame if initialization fails and leaves it as null
             if (_tickableManager != null)
             {
@@ -90,6 +94,8 @@ namespace Zenject
 
         public virtual void LateUpdate()
         {
+            if (_initializableManager.HasInitialized == false)
+                return;
             // Don't spam the log every frame if initialization fails and leaves it as null
             if (_tickableManager != null)
             {
