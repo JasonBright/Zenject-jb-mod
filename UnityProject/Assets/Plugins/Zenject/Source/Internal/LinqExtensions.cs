@@ -54,7 +54,10 @@ namespace ModestTree
 
         public static IEnumerable<T> GetDuplicates<T>(this IEnumerable<T> list)
         {
-            return list.GroupBy(x => x).Where(x => x.Skip(1).Any()).Select(x => x.Key);
+            return list.Where(x => x != null)
+                .GroupBy(x => x)
+                .Where(x => x.Skip(1).Any())
+                .Select(x => x.Key);
         }
 
         public static IEnumerable<T> Except<T>(this IEnumerable<T> list, T item)
