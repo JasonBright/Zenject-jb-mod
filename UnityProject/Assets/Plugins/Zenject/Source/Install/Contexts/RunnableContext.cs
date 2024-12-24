@@ -1,5 +1,9 @@
-﻿using ModestTree;
+﻿using System.Linq;
+using ModestTree;
 using UnityEngine;
+#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+#endif
 
 #if !NOT_UNITY3D
 
@@ -10,6 +14,7 @@ namespace Zenject
         [Tooltip("When false, wait until run method is explicitly called. Otherwise run on initialize")]
         [SerializeField]
         bool _autoRun = true;
+        [SerializeField] private bool autoFindContexts = true;
 
         static bool _staticAutoRun = true;
 
@@ -27,6 +32,39 @@ namespace Zenject
                 _staticAutoRun = true;
             }
         }
+
+#if ODIN_INSPECTOR
+        [OnInspectorGUI]
+#endif
+        public void OnValidate()
+        {
+            if (Application.isPlaying)
+                return;
+            
+            if (!autoFindContexts)
+                return;
+            
+            _monoInstallers = _monoInstallers
+                .Where(installer => installer != null)
+                .ToList();
+            
+            var foundInstallers = GetComponentsInChildren<MonoInstaller>(true);
+
+            foreach (var installer in foundInstallers)
+            {
+                var isActive = installer.isActiveAndEnabled;
+                var contains = _monoInstallers.Contains(installer);
+                if (!contains && isActive)
+                {
+                    _monoInstallers.Add(installer);
+                }
+                else if (contains && isActive == false)
+                {
+                    _monoInstallers.Remove( installer );
+                }
+            }
+        }
+
 
         public void Run()
         {

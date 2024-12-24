@@ -20,7 +20,7 @@ namespace Zenject
         [FormerlySerializedAs("Installers")]
         [FormerlySerializedAs("_installers")]
         [SerializeField]
-        List<MonoInstaller> _monoInstallers = new List<MonoInstaller>();
+        protected List<MonoInstaller> _monoInstallers = new List<MonoInstaller>();
 
         [SerializeField]
         List<MonoInstaller> _installerPrefabs = new List<MonoInstaller>();

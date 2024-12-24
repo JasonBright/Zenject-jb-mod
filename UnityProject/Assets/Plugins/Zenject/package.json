@@ -2,7 +2,7 @@
 {
 	"name": "com.svermeulen.extenject",
 	"displayName": "Extenject-JB-Fork",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "Dependency Injection Framework for Unity3D",
 	"dependencies": {}
 }
